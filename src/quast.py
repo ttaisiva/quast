@@ -1,6 +1,15 @@
 from data import *
 from unit_converter.converter import convert
 
+# unit conversion for more advanced units
+def quast_convert(args):
+    for key in conversion_factors:
+        if args[1:] == key: # convert from smaller to bigger unit
+            return args[0]/conversion_factors[key]
+        elif args[2:1] == key:
+            print(args[2:1])
+            print('will multiply')
+
 def unit(args): #incomplete
     # check for argument formatting
     try:
@@ -13,9 +22,14 @@ def unit(args): #incomplete
         result = convert(args[0]+' '+args[1], args[2])
         print('>>> ' + str(result) + ' ' + args[2]) # temp
     except:
-        print('do own unit conversion')
-    # print('>>> ' + str(result) + ' ' + args[2])
-    
+        for key in units:
+            if args[1] in units[key]:
+                if not args[2] in units[key]:
+                    print('Incompatible unit types: '+args[1]+\
+                          ' must be converted to another '+key+' unit.')
+                else:
+                    result = quast_convert(args)
+    print('>>> ' + str(result) + ' ' + args[2])
 
 def quit():
     print('>>> Quitting Quast.')
@@ -44,9 +58,8 @@ def quast():
     elif(cmd == 'sphere'):
         if not valid_arg_cnt(3, userin.split()):
             return
-    elif(cmd == 'mainseq'):
-        if not valid_arg_cnt(3, userin.split()):
-            return
+    elif(cmd == 'prefix'):
+        print('prefix table')
     elif(cmd == 'quit'):
         quit()
     else:
