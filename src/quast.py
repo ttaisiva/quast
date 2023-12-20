@@ -1,7 +1,7 @@
 from data import *
 from unit_converter.converter import convert
 
-def unit(args):
+def unit(args): #incomplete
     # check for argument formatting
     try:
         val = (float)(args[0])
@@ -22,15 +22,10 @@ def quit():
     exit()
 
 # validate number of arguments based on command
-def valid_arg_cnt(cmd, userin):
-    if cmd == 'unit':
-        return len(userin)==4
-    elif cmd == 'const':
-        return len(userin)==2
-    elif cmd == 'sphere':
-        return len(userin)==3
-    else: #cmd is mainseq
-        return len(userin)==3
+def valid_arg_cnt(n, userin):
+    if len(userin)!=n:
+        print('>>> Invalid number of arguments.')
+    return len(userin)==n
 
 def quast():
     userin = input('>>> ')
@@ -38,12 +33,20 @@ def quast():
     if(cmd == 'help'):
         print(help_msg)
     elif(cmd == 'unit'):
-        if not valid_arg_cnt(cmd, userin.split()):
-            print('>>> Invalid number of arguments.')
+        if not valid_arg_cnt(4, userin.split()):
             return
         unit(userin.split()[1:])
+    elif(cmd == 'const'):
+        if not valid_arg_cnt(2, userin.split()):
+            return
     elif(cmd == 'sun'):
         print(sun_info)
+    elif(cmd == 'sphere'):
+        if not valid_arg_cnt(3, userin.split()):
+            return
+    elif(cmd == 'mainseq'):
+        if not valid_arg_cnt(3, userin.split()):
+            return
     elif(cmd == 'quit'):
         quit()
     else:
