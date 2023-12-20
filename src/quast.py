@@ -1,4 +1,21 @@
 from data import *
+from unit_converter.converter import convert
+
+def unit(args):
+    # check for argument formatting
+    try:
+        val = (float)(args[0])
+    except:
+        print('>>> Arguments are <value> <unit1> <unit2>. First argument must be a number.')
+        return
+    # check for existing conversions
+    try:
+        result = convert(args[0]+' '+args[1], args[2])
+        print('>>> ' + str(result) + ' ' + args[2]) # temp
+    except:
+        print('do own unit conversion')
+    # print('>>> ' + str(result) + ' ' + args[2])
+    
 
 def quit():
     print('>>> Quitting Quast.')
@@ -24,7 +41,7 @@ def quast():
         if not valid_arg_cnt(cmd, userin.split()):
             print('>>> Invalid number of arguments.')
             return
-        print('ok args')
+        unit(userin.split()[1:])
     elif(cmd == 'sun'):
         print(sun_info)
     elif(cmd == 'quit'):

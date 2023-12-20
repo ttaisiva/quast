@@ -2,7 +2,7 @@ valid_commands = ['help', 'unit', 'const', 'sun', 'sphere', 'mainseq', 'quit']
 
 help_msg = '>>> Available commands:\n\
           -> help: prints all available commands\n\
-          -> unit <unit1> <val1> <unit2>: convert between units\n\
+          -> unit <val1> <unit1> <unit2>: convert between units\n\
           -> const <arg>: retrieve constant value by name or symbol\n\
           -> sun: list of sun constants\n\
           -> sphere <R> <unit>: get sphere surface area and volume by radius\n\
