@@ -20,16 +20,22 @@ sun_info = '>>> Solar constants:\n\
 units = {
     'force': ['dyn', 'N'],
     'energy': ['erg', 'J'],
-    'power': ['erg s^-1', 'W'],
+    'power': ['erg*s^-1', 'W'],
     'angle': ['rad', 'deg'],
-    'distance': ['pc', 'km']
+    'distance': ['km', 'pc']
 }
+
+def list_to_str(list):
+    str = ''
+    for e in list:
+        str += e
+    return str
 
 # corresponds to units above; smaller units come first in array
 conversion_factors = {
-    units['force']: 10e5,
-    units['energy']: 10e7,
-    units['power']: 10e7,
-    units['angle']: math.pi/180,
-    units['distance']: 3.086e13
+    list_to_str(units['force']): 1e5,
+    list_to_str(units['energy']): 1e7,
+    list_to_str(units['power']): 1e7,
+    list_to_str(units['angle']): math.pi/180,
+    list_to_str(units['distance']): 3.086e13
 }

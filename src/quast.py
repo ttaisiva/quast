@@ -4,11 +4,12 @@ from unit_converter.converter import convert
 # unit conversion for more advanced units
 def quast_convert(args):
     for key in conversion_factors:
-        if args[1:] == key: # convert from smaller to bigger unit
-            return args[0]/conversion_factors[key]
-        elif args[2:1] == key:
-            print(args[2:1])
-            print('will multiply')
+        s = args[1]+args[2]
+        if s == key: # convert from smaller to bigger unit
+            return (float)(args[0])/conversion_factors[key]
+        s = args[2]+args[1] #reverse string
+        if s == key: # convert from bigger to smaller unit
+            return (float)(args[0])*conversion_factors[key]
 
 def unit(args): #incomplete
     # check for argument formatting
@@ -20,16 +21,16 @@ def unit(args): #incomplete
     # check for existing conversions
     try:
         result = convert(args[0]+' '+args[1], args[2])
-        print('>>> ' + str(result) + ' ' + args[2]) # temp
     except:
         for key in units:
             if args[1] in units[key]:
                 if not args[2] in units[key]:
                     print('Incompatible unit types: '+args[1]+\
                           ' must be converted to another '+key+' unit.')
+                    return
                 else:
                     result = quast_convert(args)
-    print('>>> ' + str(result) + ' ' + args[2])
+    print('>>> ' + '{:.3e}'.format((result)) + ' ' + args[2])
 
 def quit():
     print('>>> Quitting Quast.')
