@@ -20,7 +20,7 @@ sun_info = '>>> Solar constants:\n\
 units = {
     'force': ['dyn', 'N'],
     'energy': ['erg', 'J'],
-    'power': ['erg*s^-1', 'W'],
+    'power': ['erg/s', 'W'],
     'angle': ['rad', 'deg'],
     'distance': ['km', 'pc']
 }
@@ -38,4 +38,9 @@ conversion_factors = {
     list_to_str(units['power']): 1e7,
     list_to_str(units['angle']): math.pi/180,
     list_to_str(units['distance']): 3.086e13
+}
+
+alt_units = {
+        'C': '°C',
+        'F': '°F'
 }

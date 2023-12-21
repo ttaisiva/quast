@@ -1,6 +1,6 @@
 from data import *
 from unit_converter.converter import convert
-
+#Data size, time, distance, mass and temperatures are supported.
 # unit conversion for more advanced units
 def quast_convert(args):
     for key in conversion_factors:
@@ -20,7 +20,12 @@ def unit(args): #incomplete
         return
     # check for existing conversions
     try:
+        if args[1] in alt_units.keys(): 
+            args[1] = alt_units[args[1]]
+        if args[2] in alt_units.keys():
+            args[2] = alt_units[args[2]]
         result = convert(args[0]+' '+args[1], args[2])
+        result = '{:.2f}'.format((result)) + ' ' + args[2]
     except:
         for key in units:
             if args[1] in units[key]:
@@ -30,7 +35,8 @@ def unit(args): #incomplete
                     return
                 else:
                     result = quast_convert(args)
-    print('>>> ' + '{:.3e}'.format((result)) + ' ' + args[2])
+                    result = '{:.3e}'.format((result)) + ' ' + args[2]
+    print('>>> ' + str(result))
 
 def quit():
     print('>>> Quitting Quast.')
